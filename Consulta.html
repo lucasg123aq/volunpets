@@ -77,6 +77,7 @@
         <div class="search-bar">
             <input type="text" id="search" placeholder="Digite o nome da ONG ou cidade...">
             <button onclick="searchONGs()">Pesquisar</button>
+             
         </div>
         <table id="resultsTable">
             <thead>
@@ -84,6 +85,7 @@
                     <th>Nome</th>
                     <th>Cidade</th>
                     <th>Contato</th>
+                    <div id="link-mapa"><p></p><a href="mapa.html">Localização!</a></div>
                 </tr>
             </thead>
             <tbody>
@@ -102,15 +104,18 @@
             { nome: "ONG VolunPets", cidade: "Belo Horizonte", contato: "(31) 3456-7890" },
             { nome: "ONG VolunPets", cidade: "Curitiba", contato: "(41) 2345-6789" },
             { nome: "ONG VolunPets", cidade: "Porto Alegre", contato: "(51) 9999-9999" }
+            
+           
         ];
+        
 
-        function searchONGs() {
+        function searchONGs() {            
             const searchTerm = document.getElementById('search').value.toLowerCase();
             const filteredONGs = ongs.filter(ong => 
                 ong.nome.toLowerCase().includes(searchTerm) || 
                 ong.cidade.toLowerCase().includes(searchTerm)
             );
-
+ 
             const resultsTable = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
             const noResultsMessage = document.getElementById('noResults');
 
@@ -121,11 +126,7 @@
             if (filteredONGs.length > 0) {
                 filteredONGs.forEach(ong => {
                     const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${ong.nome}</td>
-                        <td>${ong.cidade}</td>
-                        <td>${ong.contato}</td>
-                    `;
+                    row.innerHTML = "<td>"+ong.nome+"</td><td>"+ong.cidade+"</td><td>"+ong.contato+"</td>";
                     resultsTable.appendChild(row);
                 });
             } else {
