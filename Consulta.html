@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de ONGs Veterinárias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF; /* Azul */
+        }
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #007BFF; /* Azul */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-bar button:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #007BFF; /* Azul */
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .no-results {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Consulta de ONGs Veterinárias</h1>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Digite o nome da ONG ou cidade...">
+            <button onclick="searchONGs()">Pesquisar</button>
+        </div>
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cidade</th>
+                    <th>Contato</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Resultados serão inseridos aqui via JavaScript -->
+            </tbody>
+        </table>
+        <div class="no-results" id="noResults" style="display: none;">
+            Nenhuma ONG encontrada.
+        </div>
+    </div>
+
+    <script>
+        const ongs = [
+            { nome: "ONG VolunPets", cidade: "São Paulo", contato: "(11) 1234-5678" },
+            { nome: "ONG VolunPets", cidade: "Rio de Janeiro", contato: "(21) 9876-5432" },
+            { nome: "ONG VolunPets", cidade: "Belo Horizonte", contato: "(31) 3456-7890" },
+            { nome: "ONG VolunPets", cidade: "Curitiba", contato: "(41) 2345-6789" },
+            { nome: "ONG VolunPets", cidade: "Porto Alegre", contato: "(51) 9999-9999" }
+        ];
+
+        function searchONGs() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const filteredONGs = ongs.filter(ong => 
+                ong.nome.toLowerCase().includes(searchTerm) || 
+                ong.cidade.toLowerCase().includes(searchTerm)
+            );
+
+            const resultsTable = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
+            const noResultsMessage = document.getElementById('noResults');
+
+            // Limpar resultados anteriores
+            resultsTable.innerHTML = '';
+            noResultsMessage.style.display = 'none';
+
+            if (filteredONGs.length > 0) {
+                filteredONGs.forEach(ong => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${ong.nome}</td>
+                        <td>${ong.cidade}</td>
+                        <td>${ong.contato}</td>
+                    `;
+                    resultsTable.appendChild(row);
+                });
+            } else {
+                noResultsMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

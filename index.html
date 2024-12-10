@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - VolunPets</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: #4da8f0;
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            width: 100px;
+            margin-bottom: 15px;
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: 29px;
+            margin: 0;
+        }
+
+        .container h2 {
+            color: white;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .container input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #dfefff;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: #c6e0ff;
+        }
+
+        .container a {
+            display: block;
+            margin: 10px 0;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container a:hover {
+            text-decoration: underline;
+        }
+        
+        #link-cadastro {
+            display: inline-flex;
+        }
+        
+        a {
+            padding-left: 10px;
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+  
+            <h1>VolunPets</h1>
+        </div>
+        <h2>LOGIN</h2>
+        <form action="usuario-controller" method="post">
+            <input type="hidden" name="pagina" value="login">
+            <input type="email" name="email" placeholder="E-mail ou usuário" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <button type="submit">ENTRAR</button>
+        </form>
+        <div id="link-cadastro"><p>Não possui login? </p><a href="cadastro.html">Cadastre-se!</a></div>
+<!--        <button onclick="window.location.href='#';">CADASTRAR-SE</button>-->
+    </div>
+</body>
+</html>
